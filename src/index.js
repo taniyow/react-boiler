@@ -13,10 +13,16 @@ class App extends Component {
     constructor(props) {
         super(props);
 
-        this.state = { videos: [] };
+        this.state = { 
+            videos: [],
+            selectedVideo: null
+        };
 
         YTSearch({key: API_KEY, term: 'surfboards'}, (videos) => {
-            this.setState({ videos })
+            this.setState({ 
+                videos: videos,
+                selectedVideos: videos[0],
+            });
         });
         // this works if the function(videos) and the key value
         // on setState is the same ({ videos: videos })
@@ -30,8 +36,10 @@ class App extends Component {
         return (
             <div>
                 <SearchBar />
-                <VideoDetail video={this.state.videos[0]}/>
-                <VideoList videos={this.state.videos} /> 
+                <VideoDetail video={this.state.selectedVideo}/>
+                <VideoList 
+                    onVideoSelect={selectedVideo => this.setState({selectedVideo})}
+                    videos={this.state.videos} /> 
                 {/* videos={this.state.videos} is a passing props */}
             </div>
         );

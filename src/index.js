@@ -4,6 +4,7 @@ import YTSearch from 'youtube-api-search';
 
 import SearchBar from './components/search_bar';
 import VideoList from './components/video_list';
+import VideoDetail from './components/video_detail';
 
 const API_KEY = 'AIzaSyCQNrhNGcH7fJaSPAre9QL2H-fE67xwjA8';
 
@@ -29,6 +30,7 @@ class App extends Component {
         return (
             <div>
                 <SearchBar />
+                <VideoDetail video={this.state.videos[0]}/>
                 <VideoList videos={this.state.videos} /> 
                 {/* videos={this.state.videos} is a passing props */}
             </div>

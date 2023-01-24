@@ -18,29 +18,28 @@ class App extends Component {
             selectedVideo: null
         };
 
-        YTSearch({key: API_KEY, term: 'surfboards'}, (videos) => {
+        this.videoSearch('surfboards');
+    }
+
+    videoSearch(term) {
+        YTSearch({key: API_KEY, term: term}, (videos) => {
             this.setState({ 
                 videos: videos,
                 selectedVideos: videos[0],
             });
         });
-        // this works if the function(videos) and the key value
-        // on setState is the same ({ videos: videos })
-        
-        // YTSearch({key: API_KEY, term: 'surfboards'}, function(data) {
-        //     this.setState({ videos: data });
-        // })
     }
 
     render () {
         return (
             <div>
-                <SearchBar />
-                <VideoDetail video={this.state.selectedVideo}/>
+                <SearchBar 
+                    onSearchTermChange={term => this.videoSearch(term)}/>
+                <VideoDetail 
+                    video={this.state.selectedVideo}/>
                 <VideoList 
                     onVideoSelect={selectedVideo => this.setState({selectedVideo})}
-                    videos={this.state.videos} /> 
-                {/* videos={this.state.videos} is a passing props */}
+                    videos={this.state.videos} />
             </div>
         );
     }

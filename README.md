@@ -1,4 +1,4 @@
-# ReduxBoilerplate
+# React Boilerplate
 
 ### Getting Started
 
